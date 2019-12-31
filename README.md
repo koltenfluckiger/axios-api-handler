@@ -60,5 +60,16 @@ class App extends Component {
 }
 
 export default App;
+```
 
+```javascript
+AxiosHandler.get(url, responseType, params);
+AxiosHandler.post(url, formType, payload, params);
+AxiosHandler.patch(url, formType, payload, params);
+AxiosHandler.delete(url, params);
+
+AxiosHandler.get(String, String, Object);
+AxiosHandler.post(String, String, Object, Object);
+AxiosHandler.patch(String, String, Object, Object);
+AxiosHandler.delete(String, Object);
 ```
