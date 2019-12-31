@@ -1,0 +1,14 @@
+{
+  "name": "axios-api-handler",
+  "version": "1.0.0",
+  "description": "API Handler for Axios for quick use of axios methods.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.19.0"
+  }
+}
