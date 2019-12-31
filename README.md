@@ -72,4 +72,21 @@ AxiosHandler.get(String, String, Object);
 AxiosHandler.post(String, String, Object, Object);
 AxiosHandler.patch(String, String, Object, Object);
 AxiosHandler.delete(String, Object);
+
+AxiosHandler.get("/books", "json", {sort:
+  {_id: "asc"}
+  }
+);
+AxiosHandler.get("/books", "plain", {sort:
+  {_id: "asc"}
+  }
+);
+AxiosHandler.post("/books", "json", {sort:
+  {_id: "asc"}
+  }
+);
+AxiosHandler.post("/books", "multiPart", {sort: 
+  {_id: "asc"}
+  }
+);
 ```

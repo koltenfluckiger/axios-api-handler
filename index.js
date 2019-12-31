@@ -9,7 +9,7 @@ class ApiHandler {
       "Accept": "application/json",
       "Content-Type": "application/json"
     },
-    multiForm: {
+    multiPart: {
       "Content-Type": "multipart/form-payload",
       "Accept": "application/json"
     },
@@ -35,6 +35,18 @@ class ApiHandler {
     const headers = this.headers[formType];
     try {
       const results = await axios.post(url, payload, {headers: headers});
+      return Promise.resolve(results);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
+
+  static async put(url, formType, payload, params) {
+    const headers = this.headers[formType];
+    try {
+      const results = await axios.put(url, payload, {
+        params: params
+      }, {headers: headers});
       return Promise.resolve(results);
     } catch (err) {
       return Promise.reject(err);
