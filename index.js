@@ -2,24 +2,26 @@
 
 const axios = require("axios").default;
 
-class ApiHandler {
+class AxiosHandler {
 
-  static headers = {
-    json: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
-    multiPart: {
-      "Content-Type": "multipart/form-payload",
-      "Accept": "application/json"
-    },
-    plain: {
-      "Content-Type": "text/plain",
-      "Accept": "text/plain"
+  constructor() {
+    this.headers = {
+      json: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      multiForm: {
+        "Content-Type": "multipart/form-payload",
+        "Accept": "application/json"
+      },
+      plain: {
+        "Content-Type": "text/plain",
+        "Accept": "text/plain"
+      }
     }
   }
 
-  static async get(url, responseType, params) {
+  async get(url, responseType, params) {
     try {
       const results = await axios.get(url, {
         responseType: responseType,
@@ -31,7 +33,7 @@ class ApiHandler {
     }
   }
 
-  static async post(url, formType, payload) {
+  async post(url, formType, payload) {
     const headers = this.headers[formType];
     try {
       const results = await axios.post(url, payload, {headers: headers});
@@ -41,7 +43,7 @@ class ApiHandler {
     }
   }
 
-  static async put(url, formType, payload, params) {
+  async put(url, formType, payload, params) {
     const headers = this.headers[formType];
     try {
       const results = await axios.put(url, payload, {
@@ -53,7 +55,7 @@ class ApiHandler {
     }
   }
 
-  static async patch(url, formType, payload, params) {
+  async patch(url, formType, payload, params) {
     const headers = this.headers[formType];
     try {
       const results = await axios.patch(url, payload, {
@@ -65,7 +67,7 @@ class ApiHandler {
     }
   }
 
-  static async delete(url, params) {
+  async delete(url, params) {
     const headers = this.headers.json;
     try {
       const results = await axios.delete(url, {
@@ -78,4 +80,4 @@ class ApiHandler {
   }
 }
 
-exports.AxiosHandler = ApiHandler;
+export default new AxiosHandler();
