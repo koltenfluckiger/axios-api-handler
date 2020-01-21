@@ -1,6 +1,6 @@
 {
   "name": "axios-api-handler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "API Handler for Axios for quick use of axios methods.",
   "main": "index.js",
   "scripts": {

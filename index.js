@@ -67,17 +67,17 @@ class AxiosHandler {
     }
   }
 
-  async delete(url, params) {
-    const headers = this.headers.json;
-    try {
-      const results = await axios.delete(url, {
-        params: params
-      }, {headers: headers});
-      return Promise.resolve(results);
-    } catch (err) {
-      return Promise.reject(err);
+  async delete(url, formType, params) {
+      const headers = this.headers[formType];
+      try {
+        const results = await axios.delete(url, {
+          params: params
+        }, {headers: headers});
+        return Promise.resolve(results);
+      } catch (err) {
+        return Promise.reject(err);
+      }
     }
   }
-}
 
 export default new AxiosHandler();
