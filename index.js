@@ -4,72 +4,85 @@ const axios = require("axios").default;
 
 class AxiosHandler {
 
-  constructor() {
-    console.log(axios);
-    this.headers = {
-      json: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      multiForm: {
-        "Content-Type": "multipart/form-payload",
-        "Accept": "application/json"
-      },
-      plain: {
-        "Content-Type": "text/plain",
-        "Accept": "text/plain"
-      }
-    }
+  setBaseURL(options) {
+    axios.defaults.baseURL = options.baseURL;
   }
 
+  setHeaders(headers) {
+    axios.defaults.headers = {
+      ...axios.defaults.headers,
+      headers
+    };
+  }
 
-  async get(url, params) {
+  async get(url, {
+    params = {},
+    headers = {}
+  }) {
     try {
       const results = await axios.get(url, {
         params: params
-      }, {headers: this.headers});
+      }, {headers: headers});
       return Promise.resolve(results);
     } catch (err) {
       return Promise.reject(err);
     }
   }
 
-  async post(url, payload) {
+  async post(url, {
+    payload = {},
+    params = {},
+    headers = {}
+  }) {
     try {
-      const results = await axios.post(url, payload, {headers: this.headers});
+      const results = await axios.post(url, payload, {
+        params: params,
+        headers: headers
+      });
       return Promise.resolve(results);
     } catch (err) {
       return Promise.reject(err);
     }
   }
 
-  async put(url, payload, params) {
+  async put(url, {
+    payload = {},
+    params = {},
+    headers = {}
+  }) {
     try {
       const results = await axios.put(url, payload, {
         params: params
-      }, {headers: this.headers});
+      }, {headers: headers});
       return Promise.resolve(results);
     } catch (err) {
       return Promise.reject(err);
     }
   }
 
-  async patch(url, payload, params) {
+  async patch(url, {
+    payload = {},
+    params = {},
+    headers = {}
+  }) {
     try {
       const results = await axios.patch(url, payload, {
         params: params
-      }, {headers: this.headers});
+      }, {headers: headers});
       return Promise.resolve(results);
     } catch (err) {
       return Promise.reject(err);
     }
   }
 
-  async delete(url, params) {
+  async delete(url, {
+    params = {},
+    headers = {}
+  }) {
     try {
       const results = await axios.delete(url, {
         params: params
-      }, {headers: this.headers});
+      }, {headers: headers});
       return Promise.resolve(results);
     } catch (err) {
       return Promise.reject(err);
@@ -77,4 +90,4 @@ class AxiosHandler {
   }
 }
 
-export default AxiosHandler;
+export default new AxiosHandler();
