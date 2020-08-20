@@ -25,7 +25,7 @@ class AxiosHandler {
     async get(url, {
         params = {},
         headers = {}
-    }) {
+    } = {}) {
         try {
             const results = await axios.get(url, {
                 params: params,
@@ -33,6 +33,7 @@ class AxiosHandler {
             });
             return Promise.resolve(results);
         } catch (err) {
+            console.log(err);
             return Promise.reject(err);
         }
     }
@@ -41,7 +42,7 @@ class AxiosHandler {
         payload = {},
         params = {},
         headers = {}
-    }) {
+    } = {}) {
         try {
             const results = await axios.post(url, payload, {
                 params: params,
@@ -58,7 +59,7 @@ class AxiosHandler {
         payload = {},
         params = {},
         headers = {}
-    }) {
+    } = {}) {
         try {
             const results = await axios.put(url, payload, {
                 params: params,
@@ -74,7 +75,7 @@ class AxiosHandler {
         payload = {},
         params = {},
         headers = {}
-    }) {
+    } = {}) {
         try {
             const results = await axios.patch(url, ppayload, {
                 params: params,
@@ -89,7 +90,7 @@ class AxiosHandler {
     async delete(url, {
         params = {},
         headers = {}
-    }) {
+    } = {}) {
         try {
             const results = await axios.delete(url, {
                 params: params,
