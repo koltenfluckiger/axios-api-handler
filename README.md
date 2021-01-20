@@ -31,14 +31,13 @@ class App extends Component {
 
   async componentDidMount(){
     try {
-      const results = await ApiHandler.get('/books', "json", {
-              sort: {
-                _id: "asc"
-              }
-            }
-          );
+      const results = await ApiHandler.get('/books', {headers: {"Content-Type": "application/json"}, params: {query: {filter: {_id: _id}
+          }
+        }
+      }
+    );
 
-    this.this.setState({books: results.data, loading: false});
+    this.setState({books: results.data, loading: false});
     }
     catch(err){
       console.log(err);
@@ -63,30 +62,21 @@ export default App;
 ```
 
 ```javascript
-AxiosHandler.get(url, responseType, params);
-AxiosHandler.post(url, formType, payload, params);
-AxiosHandler.patch(url, formType, payload, params);
-AxiosHandler.delete(url, params);
+AxiosHandler.get(url, {headers, params});
+AxiosHandler.post(url, {payload, headers, params});
+AxiosHandler.patch(url,  {payload, headers, params});
+AxiosHandler.delete(url, {headers, params});
 
-AxiosHandler.get(String, String, Object);
-AxiosHandler.post(String, String, Object, Object);
-AxiosHandler.patch(String, String, Object, Object);
-AxiosHandler.delete(String, Object);
+AxiosHandler.get(String, Object({headers={}, params={}}));
+AxiosHandler.post(String, Object({payload={}, headers={}, params={}}));
+AxiosHandler.patch(String, Object({payload={}, headers={}, params={}}));
+AxiosHandler.delete(String, Object({headers={}, params={}}));
 
-AxiosHandler.get("/books", "json", {sort:
+AxiosHandler.get("/books", {headers: {"Content-Type": "application/json"}, params: {sort:
   {_id: "asc"}
   }
-);
-AxiosHandler.get("/books", "plain", {sort:
-  {_id: "asc"}
-  }
-);
-AxiosHandler.post("/books", "json", {sort:
-  {_id: "asc"}
-  }
-);
-AxiosHandler.post("/books", "multiPart", {sort: 
-  {_id: "asc"}
-  }
+});
+
+AxiosHandler.post("/books", {payload: payload, headers: {"Content-Type": "application/json"}}
 );
 ```
